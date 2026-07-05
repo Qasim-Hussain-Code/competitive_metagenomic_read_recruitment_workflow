@@ -1,0 +1,28 @@
+# Exclude raw sequence storage blocks
+GENOMES/
+METAGENOMES/
+
+# Exclude Snakemake operational directories and logs
+00_LOGS/
+01_QC/
+
+# Exclude heavy structural contig databases and alignments
+03_CONTIGS/
+04_MAPPING/
+
+# Exclude single and merged sample tracking profiles
+05_ANVIO_PROFILE/
+06_MERGED/
+
+# Exclude final processed HTML summary files
+SUMMARY/
+
+# Exclude transient intermediate manifest files
+config.json
+samples.txt
+fasta.txt
+collection.txt
+*.fa
+*.pdf
+*.log
+.DS_Store
