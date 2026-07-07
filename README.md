@@ -4,6 +4,8 @@
 
 This repository provides an automated and reproducible computational pipeline for competitive metagenomic read recruitment using the Anvi'o multi-omics platform (version 9). Read recruitment is a fundamental method in molecular microbial ecology that enables the quantification of taxonomic abundance, genome detection, and sequence variation within microbial populations across environmental samples.
 
+![Workflow Diagram](workflow.png)
+
 ## Computational and Biological Rationale
 
 In shotgun metagenomics, aligning sequencing reads to a single reference genome in isolation frequently introduces false-positive signals. This issue is primarily driven by genomic regions that are highly conserved across distinct taxa, such as ribosomal RNA genes, housekeeping genes, and shared metabolic pathways. When mapping reads to target genomes individually, reads originating from related but unrepresented species may incorrectly align to the lone reference.
