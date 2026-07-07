@@ -20,24 +20,18 @@
 #     https://raw.githubusercontent.com/merenlab/anvio/master/anvio/tests/sandbox/workflows/metagenomics/three_samples_example/sample-02-R2.fastq.gz
 #     https://raw.githubusercontent.com/merenlab/anvio/master/anvio/tests/sandbox/workflows/metagenomics/three_samples_example/sample-03-R1.fastq.gz
 #     https://raw.githubusercontent.com/merenlab/anvio/master/anvio/tests/sandbox/workflows/metagenomics/three_samples_example/sample-03-R2.fastq.gz
-#
-# HOW TO USE:
-#   1. Edit the CONFIGURATION section below (project name, paths, threads, etc.)
-#   2. Run: bash competitive_read_recruitment.sh
-#      (genomes and metagenomes are downloaded automatically)
-# =============================================================================
 
-set -euo pipefail   # Exit on error, undefined vars, and pipe failures
+set -euo pipefail  
 
 # =============================================================================
-# CONFIGURATION: Edit these variables before running
+# CONFIGURATION
 # =============================================================================
 
-export project="MRR"          # No spaces or special characters
-export workdir="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"  # Resolves automatically to the project root directory
-export threads=4                     # Number of threads for local runs
-export max_threads=4                 # Max threads (increase for HPC)
-export use_hpc="false"               # Set to "true" to generate HPC/Slurm submission script
+export project="MRR"         
+export workdir="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"  
+export threads=4                    
+export max_threads=4                 
+export use_hpc="false"               
                        
 
 # =============================================================================
