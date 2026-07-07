@@ -1,28 +1,52 @@
-# Exclude raw sequence storage blocks
-GENOMES/
-METAGENOMES/
+# Exclude raw sequence storage blocks (allow tracking of structure via placeholder README)
+MRR/GENOMES/*
+!MRR/GENOMES/README.md
+MRR/METAGENOMES/*
+!MRR/METAGENOMES/README.md
 
 # Exclude Snakemake operational directories and logs
-00_LOGS/
-01_QC/
+MRR/00_LOGS/*
+!MRR/00_LOGS/README.md
+MRR/01_QC/*
+!MRR/01_QC/README.md
 
 # Exclude heavy structural contig databases and alignments
-03_CONTIGS/
-04_MAPPING/
+MRR/03_CONTIGS/*
+!MRR/03_CONTIGS/README.md
+MRR/04_MAPPING/*
+!MRR/04_MAPPING/README.md
 
 # Exclude single and merged sample tracking profiles
-05_ANVIO_PROFILE/
-06_MERGED/
+MRR/05_ANVIO_PROFILE/*
+!MRR/05_ANVIO_PROFILE/README.md
+MRR/06_MERGED/*
+!MRR/06_MERGED/README.md
 
 # Exclude final processed HTML summary files
-SUMMARY/
+MRR/SUMMARY/*
+!MRR/SUMMARY/README.md
 
-# Exclude transient intermediate manifest files
-config.json
-samples.txt
-fasta.txt
-collection.txt
-*.fa
-*.pdf
-*.log
+# Exclude transient intermediate manifest files and visualizations in MRR
+MRR/config.json
+MRR/samples.txt
+MRR/fasta.txt
+MRR/collection.txt
+MRR/*.fa
+MRR/*.dot
+MRR/*.pdf
+MRR/.SNAKEMAKEDEBUG
+MRR/.snakemake/
+
+# Exclude heavy databases, log files, and intermediate outputs under scripts/
+scripts/KEGG_archive_unpacked/*
+!scripts/KEGG_archive_unpacked/README.md
+scripts/KEGG_build_*.tar.gz
+scripts/blast-log.txt
+scripts/diamond-log-file.txt
+
+# Exclude system and transient files
 .DS_Store
+*.log
+dtpl.error.log
+anvio_*.tar.gz
+workflow.py

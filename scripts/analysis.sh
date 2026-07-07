@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # =============================================================================
-# Competitive Metagenomic Read Recruitment — anvi'o Workflow Script
+# Competitive Metagenomic Read Recruitment: anvi'o Workflow Script
 # Tutorial: https://anvio.org/tutorials/competitive-read-recruitment/
 #
 # PREREQUISITES:
@@ -30,11 +30,11 @@
 set -euo pipefail   # Exit on error, undefined vars, and pipe failures
 
 # =============================================================================
-# CONFIGURATION — Edit these variables before running
+# CONFIGURATION: Edit these variables before running
 # =============================================================================
 
 export project="MRR"          # No spaces or special characters
-export workdir="/home/qasim/projects/competitive_metagenomic_read_recruitment_workflow"  # Change to your preferred working directory
+export workdir="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"  # Resolves automatically to the project root directory
 export threads=4                     # Number of threads for local runs
 export max_threads=4                 # Max threads (increase for HPC)
 export use_hpc="false"               # Set to "true" to generate HPC/Slurm submission script
@@ -60,7 +60,7 @@ echo "============================================================"
 anvi-run-workflow -v || { echo "ERROR: anvi'o not found. Please install it first."; exit 1; }
 
 # =============================================================================
-# STEP 1: General setup — create project directory
+# STEP 1: General setup: create project directory
 # =============================================================================
 echo ""
 echo "============================================================"
@@ -111,7 +111,7 @@ fi
 echo "Found $fa_count genome FASTA file(s) in GENOMES/"
 
 # =============================================================================
-# STEP 3: Fix deflines — rename sequences with genome-name prefix
+# STEP 3: Fix deflines: rename sequences with genome-name prefix
 # =============================================================================
 echo ""
 echo "============================================================"
@@ -121,9 +121,9 @@ echo "============================================================"
 cd GENOMES
 
 for i in *.fa; do
-    genome_name=$(echo "$i" | awk 'BEGIN{FS=".fa"}{print $1}')
+    genome_name=$(basename "$i" .fa)
     echo "  Reformatting: $genome_name"
-    anvi-script-reformat-fasta "$genome_name.fa" \
+    anvi-script-reformat-fasta "$i" \
                                --simplify-names \
                                --prefix "$genome_name" \
                                --report-file "${genome_name}_RENAME.txt" \
@@ -146,10 +146,10 @@ echo " STEP 4: Generating collection.txt"
 echo "============================================================"
 
 for i in GENOMES/*.fa; do
-    genome_name=$(basename "$i" | awk 'BEGIN{FS=".fa"}{print $1}')
+    genome_name=$(basename "$i" .fa)
     while IFS= read -r line; do
         [[ "$line" == ">"* ]] && echo -e "${line:1}\t${genome_name}"
-    done < "GENOMES/${genome_name}.fa"
+    done < "$i"
 done > collection.txt
 
 echo "  First 10 lines of collection.txt:"
@@ -361,7 +361,7 @@ for d in 00_LOGS 01_QC 03_CONTIGS 04_MAPPING 05_ANVIO_PROFILE 06_MERGED; do
     if [[ -d "$d" ]]; then
         echo "  [OK] $d"
     else
-        echo "  [MISSING] $d  — workflow may not have finished yet"
+        echo "  [MISSING] $d - workflow may not have finished yet"
     fi
 done
 
