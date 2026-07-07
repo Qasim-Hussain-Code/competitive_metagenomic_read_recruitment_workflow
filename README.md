@@ -1,5 +1,7 @@
 # Competitive Metagenomic Read Recruitment Workflow
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](license)
+
 This repository provides an automated, reproducible workflow for competitive metagenomic read recruitment using the Anvi'o platform (version 9). Read recruitment is a cornerstone of metagenomics, allowing researchers to quantify the abundance, detection, and genomic variation of specific microbial strains or species across diverse environmental samples.
 
 ## Computational and Biological Rationale
@@ -88,3 +90,7 @@ anvi-interactive -p MRR/06_MERGED/MRR/PROFILE.db \
                  -c MRR/03_CONTIGS/MRR-contigs.db \
                  -C GENOMES
 ```
+
+## License
+
+This project is licensed under the terms of the MIT License. See the [license](license) file for details.
